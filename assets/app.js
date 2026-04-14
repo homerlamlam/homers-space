@@ -4,7 +4,7 @@ const profileData = {
       title: "【可修改占位符】 | 求职个人介绍网站",
       description: "【可修改占位符】的求职个人介绍网站，用于面试展示、简历配套说明与项目能力呈现。"
     },
-    nav: ["关于我", "教育经历", "技能专长", "项目实践", "联系方式"],
+    nav: ["首页", "亮点", "教育", "技能", "项目", "联系"],
     hero: {
       badge: "面试展示 / Resume Companion",
       label: "Candidate Introduction",
@@ -22,6 +22,31 @@ const profileData = {
       cityValue: "【可修改占位符】",
       typeLabel: "求职类型",
       typeValue: "【可修改占位符】"
+    },
+    story: {
+      eyebrow: "Why Me",
+      title: "滚动式亮点叙事",
+      summary: "【可修改占位符】",
+      cards: [
+        {
+          metric: "01",
+          metricLabel: "定位",
+          title: "【可修改占位符】",
+          body: "【可修改占位符】"
+        },
+        {
+          metric: "02",
+          metricLabel: "优势",
+          title: "【可修改占位符】",
+          body: "【可修改占位符】"
+        },
+        {
+          metric: "03",
+          metricLabel: "成长",
+          title: "【可修改占位符】",
+          body: "【可修改占位符】"
+        }
+      ]
     },
     about: {
       eyebrow: "About Me",
@@ -58,6 +83,7 @@ const profileData = {
     contact: {
       eyebrow: "Contact",
       title: "联系方式",
+      summary: "【可修改占位符】",
       emailLabel: "邮箱",
       phoneLabel: "电话",
       githubLabel: "GitHub",
@@ -111,7 +137,7 @@ const profileData = {
       title: "【Editable Placeholder】 | Job Profile Website",
       description: "A personal job profile website for interviews, resume support, and project showcase."
     },
-    nav: ["About", "Education", "Skills", "Projects", "Contact"],
+    nav: ["Hero", "Story", "Education", "Skills", "Projects", "Contact"],
     hero: {
       badge: "Interview Portfolio / Resume Companion",
       label: "Candidate Introduction",
@@ -129,6 +155,31 @@ const profileData = {
       cityValue: "【Editable Placeholder】",
       typeLabel: "Employment Type",
       typeValue: "【Editable Placeholder】"
+    },
+    story: {
+      eyebrow: "Why Me",
+      title: "Scroll-led Storytelling",
+      summary: "【Editable Placeholder】",
+      cards: [
+        {
+          metric: "01",
+          metricLabel: "Positioning",
+          title: "【Editable Placeholder】",
+          body: "【Editable Placeholder】"
+        },
+        {
+          metric: "02",
+          metricLabel: "Strength",
+          title: "【Editable Placeholder】",
+          body: "【Editable Placeholder】"
+        },
+        {
+          metric: "03",
+          metricLabel: "Growth",
+          title: "【Editable Placeholder】",
+          body: "【Editable Placeholder】"
+        }
+      ]
     },
     about: {
       eyebrow: "About Me",
@@ -165,6 +216,7 @@ const profileData = {
     contact: {
       eyebrow: "Contact",
       title: "Contact",
+      summary: "【Editable Placeholder】",
       emailLabel: "Email",
       phoneLabel: "Phone",
       githubLabel: "GitHub",
@@ -215,7 +267,7 @@ const profileData = {
   }
 };
 
-const state = { locale: "zh" };
+const state = { locale: "zh", activeStory: 0 };
 const educationList = document.querySelector("#education-list");
 const hardSkills = document.querySelector("#hard-skills");
 const softSkills = document.querySelector("#soft-skills");
@@ -224,6 +276,8 @@ const languageToggle = document.querySelector("#language-toggle");
 const navLinks = [...document.querySelectorAll("[data-nav-link]")];
 const revealItems = [...document.querySelectorAll("[data-reveal]")];
 const sections = [...document.querySelectorAll("main section[id]")];
+const storyCards = [...document.querySelectorAll("[data-story-card]")];
+const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
 
 function setText(key, value) {
   const node = document.querySelector(`[data-i18n="${key}"]`);
@@ -232,18 +286,16 @@ function setText(key, value) {
 
 function createEducationItem(item, labels) {
   const wrapper = document.createElement("article");
-  wrapper.className =
-    "rounded-3xl border border-white/8 bg-white/5 p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/30";
+  wrapper.className = "timeline-item reveal-ready";
+  wrapper.dataset.reveal = "";
   wrapper.innerHTML = `
-    <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-      <div class="space-y-2">
-        <p class="text-sm tracking-[0.2em] text-cyan-100 uppercase">${item.time}</p>
-        <h3 class="text-xl font-medium text-white">${item.school}</h3>
-        <p class="text-slate-300">${item.major}</p>
-      </div>
-      <div class="rounded-2xl border border-white/8 bg-slate-900/50 px-4 py-3 text-sm text-slate-200">
-        <p class="text-slate-400">${labels.honorsLabel}</p>
-        <p class="mt-1">${item.honors}</p>
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <p class="text-sm tracking-[0.2em] text-cyan-100 uppercase">${item.time}</p>
+      <h3 class="mt-3 text-2xl font-semibold text-white">${item.school}</h3>
+      <p class="mt-2 text-slate-300">${item.major}</p>
+      <div class="mt-5 inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+        ${labels.honorsLabel}: ${item.honors}
       </div>
     </div>
   `;
@@ -271,28 +323,26 @@ function createSkillItem(item, levelLabel) {
 
 function createProjectItem(item, labels) {
   const wrapper = document.createElement("article");
-  wrapper.className =
-    "group rounded-[1.75rem] border border-white/8 bg-white/5 p-6 transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/30 hover:bg-white/7";
+  wrapper.className = "project-card reveal-ready";
+  wrapper.dataset.reveal = "";
   const linkMarkup = item.link
     ? `<a href="${item.link}" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 text-sm text-cyan-100 transition hover:text-white">${labels.linkLabel}<span aria-hidden="true">↗</span></a>`
     : "";
   wrapper.innerHTML = `
-    <div class="flex h-full flex-col justify-between gap-6">
-      <div class="space-y-4">
-        <div class="flex items-start justify-between gap-4">
-          <h3 class="text-xl font-medium text-white">${item.name}</h3>
-          <span class="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">${labels.stackLabel}</span>
+    <div class="space-y-5">
+      <div class="flex items-start justify-between gap-4">
+        <h3 class="text-2xl font-semibold text-white">${item.name}</h3>
+        <span class="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">${labels.stackLabel}</span>
+      </div>
+      <p class="text-sm leading-7 text-slate-300">${item.stack}</p>
+      <div class="space-y-4 rounded-[1.5rem] border border-white/8 bg-slate-950/35 p-5">
+        <div>
+          <p class="text-sm text-slate-400">${labels.roleLabel}</p>
+          <p class="mt-1 leading-7 text-slate-200">${item.contribution}</p>
         </div>
-        <p class="text-sm leading-7 text-slate-300">${item.stack}</p>
-        <div class="space-y-3 rounded-3xl border border-white/8 bg-slate-950/35 p-4">
-          <div>
-            <p class="text-sm text-slate-400">${labels.roleLabel}</p>
-            <p class="mt-1 leading-7 text-slate-200">${item.contribution}</p>
-          </div>
-          <div>
-            <p class="text-sm text-slate-400">${labels.resultLabel}</p>
-            <p class="mt-1 leading-7 text-slate-200">${item.result}</p>
-          </div>
+        <div>
+          <p class="text-sm text-slate-400">${labels.resultLabel}</p>
+          <p class="mt-1 leading-7 text-slate-200">${item.result}</p>
         </div>
       </div>
       ${linkMarkup}
@@ -306,13 +356,25 @@ function fillContactCard(id, label, value, href) {
   node.href = href;
   node.innerHTML = `
     <p class="text-sm text-slate-400">${label}</p>
-    <p class="mt-2 break-all text-base leading-7 text-white">${value}</p>
+    <p class="mt-3 break-all text-base leading-7 text-white">${value}</p>
   `;
 }
 
 function renderNav(localeData) {
   navLinks.forEach((link, index) => {
     link.textContent = localeData.nav[index];
+  });
+}
+
+function renderStory(localeData) {
+  setText("story.eyebrow", localeData.story.eyebrow);
+  setText("story.title", localeData.story.title);
+  setText("story.summary", localeData.story.summary);
+  localeData.story.cards.forEach((card, index) => {
+    setText(`story.cards.${index}.metric`, card.metric);
+    setText(`story.cards.${index}.metricLabel`, card.metricLabel);
+    setText(`story.cards.${index}.title`, card.title);
+    setText(`story.cards.${index}.body`, card.body);
   });
 }
 
@@ -323,6 +385,7 @@ function renderPage() {
   document.querySelector('meta[name="description"]').setAttribute("content", localeData.meta.description);
 
   Object.entries(localeData.hero).forEach(([key, value]) => setText(`hero.${key}`, value));
+  renderStory(localeData);
   Object.entries(localeData.about).forEach(([key, value]) => setText(`about.${key}`, value));
   Object.entries(localeData.education).forEach(([key, value]) => setText(`education.${key}`, value));
   Object.entries(localeData.skills).forEach(([key, value]) => setText(`skills.${key}`, value));
@@ -347,6 +410,11 @@ function renderPage() {
   fillContactCard("#contact-github", localeData.contact.githubLabel, localeData.contactInfo.github, localeData.contactInfo.github);
   fillContactCard("#contact-portfolio", localeData.contact.portfolioLabel, localeData.contactInfo.portfolio, localeData.contactInfo.portfolio);
   languageToggle.textContent = state.locale === "zh" ? "EN" : "中文";
+
+  document.querySelectorAll("[data-reveal]").forEach((item) => {
+    if (!revealItems.includes(item)) revealObserver.observe(item);
+  });
+  observeProgressBars();
 }
 
 const revealObserver = new IntersectionObserver(
@@ -358,7 +426,7 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.18 }
+  { threshold: 0.15 }
 );
 
 revealItems.forEach((item) => revealObserver.observe(item));
@@ -372,7 +440,7 @@ const progressObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.55 }
+  { threshold: 0.5 }
 );
 
 function observeProgressBars() {
@@ -395,11 +463,59 @@ const navObserver = new IntersectionObserver(
 
 sections.forEach((section) => navObserver.observe(section));
 
+const storyObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const index = storyCards.indexOf(entry.target);
+      if (index === -1) return;
+      if (entry.intersectionRatio > 0.55) {
+        state.activeStory = index;
+        storyCards.forEach((card, cardIndex) => {
+          card.classList.toggle("is-active", cardIndex === index);
+        });
+      }
+    });
+  },
+  { threshold: [0.35, 0.55, 0.8] }
+);
+
+storyCards.forEach((card, index) => {
+  card.classList.toggle("is-active", index === 0);
+  storyObserver.observe(card);
+});
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function updateParallax() {
+  if (prefersReducedMotion.matches) return;
+  const viewportHeight = window.innerHeight || 1;
+  parallaxItems.forEach((item) => {
+    const speed = Number(item.dataset.parallaxSpeed || 0.06);
+    const rect = item.getBoundingClientRect();
+    const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
+    const translateY = centerOffset * speed * -1;
+    item.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0)`;
+  });
+}
+
+let ticking = false;
+function handleScroll() {
+  if (ticking) return;
+  ticking = true;
+  window.requestAnimationFrame(() => {
+    updateParallax();
+    ticking = false;
+  });
+}
+
 languageToggle.addEventListener("click", () => {
   state.locale = state.locale === "zh" ? "en" : "zh";
   renderPage();
-  observeProgressBars();
+  updateParallax();
 });
 
+window.addEventListener("scroll", handleScroll, { passive: true });
+window.addEventListener("resize", handleScroll);
+
 renderPage();
-observeProgressBars();
+updateParallax();

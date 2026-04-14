@@ -11,17 +11,20 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body class="selection:bg-cyan-300/20 selection:text-white">
-    <div class="pointer-events-none fixed inset-0 -z-10 subtle-grid opacity-20"></div>
+    <div class="pointer-events-none fixed inset-0 -z-20 subtle-grid opacity-20"></div>
+    <div class="ambient-orb ambient-orb-a"></div>
+    <div class="ambient-orb ambient-orb-b"></div>
 
-    <header class="sticky top-0 z-50 border-b border-white/8 bg-slate-950/70 backdrop-blur-xl">
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/8 bg-slate-950/58 backdrop-blur-xl">
       <div class="container-shell flex items-center justify-between gap-4 py-4">
         <a href="#hero" class="text-sm font-medium tracking-[0.24em] text-slate-200 uppercase">Profile</a>
-        <nav class="flex max-w-[calc(100vw-8rem)] items-center gap-2 overflow-x-auto pb-1 lg:max-w-none">
-          <a data-nav-link href="#about" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">关于我</a>
-          <a data-nav-link href="#education" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">教育经历</a>
-          <a data-nav-link href="#skills" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">技能专长</a>
-          <a data-nav-link href="#projects" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">项目实践</a>
-          <a data-nav-link href="#contact" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">联系方式</a>
+        <nav class="flex max-w-[calc(100vw-9rem)] items-center gap-2 overflow-x-auto pb-1 lg:max-w-none">
+          <a data-nav-link href="#hero" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">首页</a>
+          <a data-nav-link href="#story" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">亮点</a>
+          <a data-nav-link href="#education" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">教育</a>
+          <a data-nav-link href="#skills" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">技能</a>
+          <a data-nav-link href="#projects" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">项目</a>
+          <a data-nav-link href="#contact" class="rounded-full border border-white/8 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/30 hover:text-white">联系</a>
         </nav>
         <button
           id="language-toggle"
@@ -33,10 +36,10 @@
       </div>
     </header>
 
-    <main>
-      <section id="hero" class="relative overflow-hidden">
-        <div class="container-shell flex min-h-[calc(100vh-72px)] items-center py-16 lg:py-24">
-          <div class="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+    <main class="pb-20 pt-18 lg:pt-20">
+      <section id="hero" class="hero-shell relative overflow-hidden">
+        <div class="container-shell">
+          <div class="hero-grid min-h-[calc(100vh-5rem)] items-center gap-12 py-20 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:py-28">
             <div class="reveal-ready space-y-8" data-reveal>
               <div class="inline-flex items-center gap-3 rounded-full border border-cyan-300/20 bg-white/5 px-4 py-2 text-sm text-cyan-100">
                 <span class="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(76,201,240,0.8)]"></span>
@@ -44,9 +47,9 @@
               </div>
               <div class="space-y-5">
                 <p data-i18n="hero.label" class="text-sm tracking-[0.28em] text-slate-400 uppercase">Candidate Introduction</p>
-                <h1 data-i18n="hero.name" class="font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">【可修改占位符】</h1>
-                <p data-i18n="hero.role" class="max-w-2xl text-2xl font-medium text-cyan-100 sm:text-3xl">【可修改占位符】 / 【可修改占位符】</p>
-                <p data-i18n="hero.slogan" class="max-w-2xl text-lg leading-8 text-slate-300">【可修改占位符】</p>
+                <h1 data-i18n="hero.name" class="font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl xl:text-7xl">【可修改占位符】</h1>
+                <p data-i18n="hero.role" class="max-w-2xl text-2xl font-medium text-cyan-100 sm:text-3xl xl:text-4xl">【可修改占位符】 / 【可修改占位符】</p>
+                <p data-i18n="hero.slogan" class="max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">【可修改占位符】</p>
               </div>
               <div class="flex flex-wrap gap-3 text-sm text-slate-300">
                 <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2" data-i18n="hero.taglineOne">结果导向</span>
@@ -54,136 +57,168 @@
                 <span class="rounded-full border border-white/10 bg-white/5 px-4 py-2" data-i18n="hero.taglineThree">可快速上手业务场景</span>
               </div>
             </div>
+
             <div class="reveal-ready relative" data-reveal>
-              <div class="glass-panel relative overflow-hidden rounded-[var(--radius-panel)] p-8">
-                <div class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent"></div>
-                <div class="space-y-6">
-                  <div class="flex items-center justify-between">
-                    <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="hero.cardTitle">Profile Snapshot</p>
-                    <span class="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-200" data-i18n="hero.availability">状态开放</span>
-                  </div>
-                  <div class="space-y-4">
-                    <div class="rounded-2xl border border-white/8 bg-white/5 p-5">
-                      <p class="text-sm text-slate-400" data-i18n="hero.focusLabel">目标方向</p>
-                      <p class="mt-2 text-lg text-white" data-i18n="hero.focusValue">【可修改占位符】</p>
+              <div class="product-stage">
+                <div class="product-shell" data-parallax data-parallax-speed="0.08">
+                  <div class="product-core">
+                    <div class="product-ring product-ring-a"></div>
+                    <div class="product-ring product-ring-b"></div>
+                    <div class="product-panel">
+                      <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="hero.cardTitle">Profile Snapshot</p>
+                      <div class="mt-6 space-y-4">
+                        <div class="rounded-2xl border border-white/10 bg-white/6 p-5">
+                          <p class="text-sm text-slate-400" data-i18n="hero.focusLabel">目标方向</p>
+                          <p class="mt-2 text-lg text-white" data-i18n="hero.focusValue">【可修改占位符】</p>
+                        </div>
+                        <div class="grid gap-4 sm:grid-cols-2">
+                          <div class="rounded-2xl border border-white/10 bg-white/6 p-5">
+                            <p class="text-sm text-slate-400" data-i18n="hero.cityLabel">意向城市</p>
+                            <p class="mt-2 text-white" data-i18n="hero.cityValue">【可修改占位符】</p>
+                          </div>
+                          <div class="rounded-2xl border border-white/10 bg-white/6 p-5">
+                            <p class="text-sm text-slate-400" data-i18n="hero.typeLabel">求职类型</p>
+                            <p class="mt-2 text-white" data-i18n="hero.typeValue">【可修改占位符】</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="grid gap-4 sm:grid-cols-2">
-                      <div class="rounded-2xl border border-white/8 bg-white/5 p-5">
-                        <p class="text-sm text-slate-400" data-i18n="hero.cityLabel">意向城市</p>
-                        <p class="mt-2 text-white" data-i18n="hero.cityValue">【可修改占位符】</p>
-                      </div>
-                      <div class="rounded-2xl border border-white/8 bg-white/5 p-5">
-                        <p class="text-sm text-slate-400" data-i18n="hero.typeLabel">求职类型</p>
-                        <p class="mt-2 text-white" data-i18n="hero.typeValue">【可修改占位符】</p>
-                      </div>
+                    <div class="product-caption">
+                      <span class="status-dot"></span>
+                      <span data-i18n="hero.availability">状态开放</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl"></div>
-              <div class="absolute -bottom-10 left-10 h-28 w-28 rounded-full bg-blue-400/10 blur-3xl"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="relative py-12 lg:py-20">
-        <div class="container-shell grid gap-8 lg:grid-cols-[180px_1fr]">
-          <div class="hidden lg:block">
-            <div class="sticky top-28 flex justify-center">
-              <div class="timeline-line h-[calc(100vh-11rem)] w-px rounded-full"></div>
+      <section id="story" class="container-shell py-12 lg:py-20">
+        <div class="section-head reveal-ready" data-reveal>
+          <p class="section-kicker" data-i18n="story.eyebrow">Why Me</p>
+          <h2 class="section-title text-white" data-i18n="story.title">滚动式亮点叙事</h2>
+          <p class="max-w-3xl text-lg leading-8 text-slate-300" data-i18n="story.summary">【可修改占位符】</p>
+        </div>
+
+        <div class="story-stack mt-12">
+          <article class="story-card reveal-ready" data-reveal data-story-card>
+            <div class="story-media">
+              <div class="story-metric">
+                <span class="story-metric-value" data-i18n="story.cards.0.metric">01</span>
+                <span class="story-metric-label" data-i18n="story.cards.0.metricLabel">定位</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <p class="story-index">01</p>
+              <h3 class="text-3xl font-semibold text-white" data-i18n="story.cards.0.title">【可修改占位符】</h3>
+              <p class="mt-4 text-lg leading-8 text-slate-300" data-i18n="story.cards.0.body">【可修改占位符】</p>
+            </div>
+          </article>
+          <article class="story-card reveal-ready" data-reveal data-story-card>
+            <div class="story-media">
+              <div class="story-metric">
+                <span class="story-metric-value" data-i18n="story.cards.1.metric">02</span>
+                <span class="story-metric-label" data-i18n="story.cards.1.metricLabel">优势</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <p class="story-index">02</p>
+              <h3 class="text-3xl font-semibold text-white" data-i18n="story.cards.1.title">【可修改占位符】</h3>
+              <p class="mt-4 text-lg leading-8 text-slate-300" data-i18n="story.cards.1.body">【可修改占位符】</p>
+            </div>
+          </article>
+          <article class="story-card reveal-ready" data-reveal data-story-card>
+            <div class="story-media">
+              <div class="story-metric">
+                <span class="story-metric-value" data-i18n="story.cards.2.metric">03</span>
+                <span class="story-metric-label" data-i18n="story.cards.2.metricLabel">成长</span>
+              </div>
+            </div>
+            <div class="story-copy">
+              <p class="story-index">03</p>
+              <h3 class="text-3xl font-semibold text-white" data-i18n="story.cards.2.title">【可修改占位符】</h3>
+              <p class="mt-4 text-lg leading-8 text-slate-300" data-i18n="story.cards.2.body">【可修改占位符】</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="container-shell py-12 lg:py-16">
+        <div class="feature-band reveal-ready" data-reveal data-parallax data-parallax-speed="0.05">
+          <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+            <div>
+              <p class="section-kicker" data-i18n="about.eyebrow">About Me</p>
+              <h2 class="section-title text-white" data-i18n="about.title">关于我</h2>
+              <p class="mt-6 text-lg leading-8 text-slate-300" data-i18n="about.intro">【可修改占位符】</p>
+              <p class="mt-4 text-lg leading-8 text-slate-300" data-i18n="about.career">【可修改占位符】</p>
+            </div>
+            <div class="grid gap-4">
+              <div class="soft-panel">
+                <p class="text-sm text-slate-400" data-i18n="about.personalityLabel">性格优势</p>
+                <p class="mt-3 text-white leading-7" data-i18n="about.personalityValue">【可修改占位符】</p>
+              </div>
+              <div class="soft-panel">
+                <p class="text-sm text-slate-400" data-i18n="about.planLabel">职业规划</p>
+                <p class="mt-3 text-white leading-7" data-i18n="about.planValue">【可修改占位符】</p>
+              </div>
             </div>
           </div>
-          <div class="space-y-8 lg:space-y-10">
-            <section id="about" class="reveal-ready glass-panel rounded-[var(--radius-panel)] p-7 sm:p-8" data-reveal>
-              <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">01</div>
-                <div>
-                  <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="about.eyebrow">About Me</p>
-                  <h2 class="section-title text-white" data-i18n="about.title">关于我</h2>
-                </div>
-              </div>
-              <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-                <div class="space-y-4">
-                  <p class="text-base leading-8 text-slate-300" data-i18n="about.intro">【可修改占位符】</p>
-                  <p class="text-base leading-8 text-slate-300" data-i18n="about.career">【可修改占位符】</p>
-                </div>
-                <div class="grid gap-4">
-                  <div class="rounded-2xl border border-white/8 bg-white/5 p-5">
-                    <p class="text-sm text-slate-400" data-i18n="about.personalityLabel">性格优势</p>
-                    <p class="mt-2 leading-7 text-white" data-i18n="about.personalityValue">【可修改占位符】</p>
-                  </div>
-                  <div class="rounded-2xl border border-white/8 bg-white/5 p-5">
-                    <p class="text-sm text-slate-400" data-i18n="about.planLabel">职业规划</p>
-                    <p class="mt-2 leading-7 text-white" data-i18n="about.planValue">【可修改占位符】</p>
-                  </div>
-                </div>
-              </div>
-            </section>
+        </div>
+      </section>
 
-            <section id="education" class="reveal-ready glass-panel rounded-[var(--radius-panel)] p-7 sm:p-8" data-reveal>
-              <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">02</div>
-                <div>
-                  <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="education.eyebrow">Education</p>
-                  <h2 class="section-title text-white" data-i18n="education.title">教育经历</h2>
-                </div>
-              </div>
-              <div id="education-list" class="space-y-5"></div>
-            </section>
+      <section id="education" class="container-shell py-12 lg:py-16">
+        <div class="section-head reveal-ready" data-reveal>
+          <p class="section-kicker" data-i18n="education.eyebrow">Education</p>
+          <h2 class="section-title text-white" data-i18n="education.title">教育经历</h2>
+        </div>
+        <div id="education-list" class="timeline-shell mt-10"></div>
+      </section>
 
-            <section id="skills" class="reveal-ready glass-panel rounded-[var(--radius-panel)] p-7 sm:p-8" data-reveal>
-              <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">03</div>
-                <div>
-                  <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="skills.eyebrow">Capabilities</p>
-                  <h2 class="section-title text-white" data-i18n="skills.title">技能专长</h2>
-                </div>
-              </div>
-              <div class="grid gap-6 lg:grid-cols-2">
-                <div class="rounded-3xl border border-white/8 bg-white/5 p-5 sm:p-6">
-                  <div class="mb-5 flex items-center justify-between">
-                    <h3 class="text-lg font-medium text-white" data-i18n="skills.hardTitle">硬技能</h3>
-                    <span class="text-sm text-slate-400" data-i18n="skills.hardHint">技术能力</span>
-                  </div>
-                  <div id="hard-skills" class="space-y-4"></div>
-                </div>
-                <div class="rounded-3xl border border-white/8 bg-white/5 p-5 sm:p-6">
-                  <div class="mb-5 flex items-center justify-between">
-                    <h3 class="text-lg font-medium text-white" data-i18n="skills.softTitle">软技能</h3>
-                    <span class="text-sm text-slate-400" data-i18n="skills.softHint">协作与表达</span>
-                  </div>
-                  <div id="soft-skills" class="space-y-4"></div>
-                </div>
-              </div>
-            </section>
+      <section id="skills" class="container-shell py-12 lg:py-16">
+        <div class="section-head reveal-ready" data-reveal>
+          <p class="section-kicker" data-i18n="skills.eyebrow">Capabilities</p>
+          <h2 class="section-title text-white" data-i18n="skills.title">技能专长</h2>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="feature-panel reveal-ready" data-reveal>
+            <div class="mb-5 flex items-center justify-between">
+              <h3 class="text-xl font-medium text-white" data-i18n="skills.hardTitle">硬技能</h3>
+              <span class="text-sm text-slate-400" data-i18n="skills.hardHint">技术能力</span>
+            </div>
+            <div id="hard-skills" class="space-y-4"></div>
+          </div>
+          <div class="feature-panel reveal-ready" data-reveal>
+            <div class="mb-5 flex items-center justify-between">
+              <h3 class="text-xl font-medium text-white" data-i18n="skills.softTitle">软技能</h3>
+              <span class="text-sm text-slate-400" data-i18n="skills.softHint">协作与表达</span>
+            </div>
+            <div id="soft-skills" class="space-y-4"></div>
+          </div>
+        </div>
+      </section>
 
-            <section id="projects" class="reveal-ready glass-panel rounded-[var(--radius-panel)] p-7 sm:p-8" data-reveal>
-              <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">04</div>
-                <div>
-                  <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="projects.eyebrow">Projects</p>
-                  <h2 class="section-title text-white" data-i18n="projects.title">项目实践</h2>
-                </div>
-              </div>
-              <div id="projects-list" class="grid gap-5 xl:grid-cols-2"></div>
-            </section>
+      <section id="projects" class="container-shell py-12 lg:py-16">
+        <div class="section-head reveal-ready" data-reveal>
+          <p class="section-kicker" data-i18n="projects.eyebrow">Projects</p>
+          <h2 class="section-title text-white" data-i18n="projects.title">项目实践</h2>
+        </div>
+        <div id="projects-list" class="project-grid mt-10"></div>
+      </section>
 
-            <section id="contact" class="reveal-ready glass-panel rounded-[var(--radius-panel)] p-7 sm:p-8" data-reveal>
-              <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-11 w-11 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">05</div>
-                <div>
-                  <p class="text-sm tracking-[0.24em] text-slate-400 uppercase" data-i18n="contact.eyebrow">Contact</p>
-                  <h2 class="section-title text-white" data-i18n="contact.title">联系方式</h2>
-                </div>
-              </div>
-              <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                <a id="contact-email" class="rounded-3xl border border-white/8 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/7"></a>
-                <a id="contact-phone" class="rounded-3xl border border-white/8 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/7"></a>
-                <a id="contact-github" target="_blank" rel="noreferrer" class="rounded-3xl border border-white/8 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/7"></a>
-                <a id="contact-portfolio" target="_blank" rel="noreferrer" class="rounded-3xl border border-white/8 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-white/7"></a>
-              </div>
-            </section>
+      <section id="contact" class="container-shell py-12 lg:py-20">
+        <div class="contact-shell reveal-ready" data-reveal>
+          <div class="max-w-3xl">
+            <p class="section-kicker" data-i18n="contact.eyebrow">Contact</p>
+            <h2 class="section-title text-white" data-i18n="contact.title">联系方式</h2>
+            <p class="mt-5 text-lg leading-8 text-slate-300" data-i18n="contact.summary">【可修改占位符】</p>
+          </div>
+          <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <a id="contact-email" class="contact-card"></a>
+            <a id="contact-phone" class="contact-card"></a>
+            <a id="contact-github" target="_blank" rel="noreferrer" class="contact-card"></a>
+            <a id="contact-portfolio" target="_blank" rel="noreferrer" class="contact-card"></a>
           </div>
         </div>
       </section>
